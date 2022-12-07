@@ -13,6 +13,20 @@
     "icon": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png",
     "themecolor": "#2e5cb8"
   },
+  "git-profiles": {
+    "target": "https://github.com/YieldingExploiter/git-profiles#profile-based-git-init--git-clone",
+    "title": "Profile-Based Git Commands",
+    "description": "Need to manage multiple GH/GL/GT Users with different SSH Keys? Keep running git config user.name/user.email constantly? This project's for you!",
+    "icon": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png",
+    "themecolor": "#2e5cb8"
+  },
+  "git-profiles/r": {
+    "target": "https://github.com/YieldingExploiter/git-profiles#repo-routes",
+    "title": "Profile-Based Git Commands -> repo routes",
+    "description": "Need to manage multiple GH/GL/GT Users with different SSH Keys? Keep running git config user.name/user.email constantly? This project's for you!",
+    "icon": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png",
+    "themecolor": "#2e5cb8"
+  },
   "b": {
     "target": "https://yieldingexploiter.github.io/bio/"
   },
