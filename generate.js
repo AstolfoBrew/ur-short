@@ -1,4 +1,4 @@
-const fs = require('fs'), path = require('path');
+const fs = require('fs-extra'), path = require('path');
 const shorts = JSON.parse(fs.readFileSync(path.join(process.cwd(),'shorts.json'),'utf-8'))
 const template = fs.readFileSync(path.join(process.cwd(),'template.html'),'utf-8');
 for (const idx in shorts) {
@@ -15,7 +15,10 @@ for (const idx in shorts) {
     "themecolor": "#1a1a1a",
     ...val,
   }
+  let linkTemplate = template;
   for (const subIdx in val) {
-    template = template.split(subIdx.toUpperCase()).join(val[subIdx])
+    linkTemplate = linkTemplate.split(subIdx.toUpperCase()).join(val[subIdx])
   }
+  fs.ensureDirSync(path.join(process.cwd(),idx))
+  fs.writeFileSync(path.join(process.cwd(),idx,'index.html'),linkTemplate)
 }
