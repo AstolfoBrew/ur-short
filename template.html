@@ -70,20 +70,14 @@
       a:visited {
         color: #7287fd;
       }
-      /* Notifies the user to stop using dark reader */
-      html[data-darkreader-scheme] body {
-        display: none;
-      }
-      html[data-darkreader-scheme]::before {
-        content: 'This site is dark themed! Dark reader breaks this site, so please disable it.';
+      body {
         position: fixed;
         top: 0;
         left: 0;
         width: 100vw;
         height: 100vh;
-        padding-top: 0.5em;
-        text-align: center;
-        background: #1e2030;
+        margin: 0 0;
+        padding: 8px 16px;
       }
       kbd:not(.default) {
         padding-bottom: 4px;
