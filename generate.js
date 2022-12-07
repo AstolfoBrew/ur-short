@@ -1,6 +1,12 @@
 const fs = require('fs-extra'), path = require('path');
 const shorts = JSON.parse(fs.readFileSync(path.join(process.cwd(),'shorts.json'),'utf-8'))
-const template = fs.readFileSync(path.join(process.cwd(),'template.html'),'utf-8');
+const template = require('html-minifier').minify(fs.readFileSync(path.join(process.cwd(),'template.html'),'utf-8'),{
+  collapseWhitespace:true,
+  preserveLineBreaks: false,
+  minifyCSS: true,
+  minifyJS: true,
+  removeComments: true
+})
 for (const idx in shorts) {
   let val = shorts[idx];
   if (typeof val === 'string')
