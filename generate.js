@@ -21,6 +21,7 @@ for (const idx in shorts) {
     "description": `This link goes to ${val}`,
     "icon": "",
     "themecolor": "#1a1a1a",
+    "twittercard": "",
     ...val,
   }
   let linkTemplate = template;
