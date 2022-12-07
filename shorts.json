@@ -12,6 +12,7 @@
   ".": {
     "target": "https://github.com/YieldingExploiter/ur-short",
     "title": "Ur Short",
-    "description": "A URL Shortener using Github Pages."
+    "description": "A URL Shortener using Github Pages.",
+    "icon": "https://s.astolfo.gay/ur%20short%20lol.png"
   }
 }

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>404</title>    
+    <meta name="og:title" content="404: Not Found" />
+    <meta property="og:type" content="website" />
+    <meta name="description" content="This link didn't work - Maybe try another?" />
+    <meta name="og:description" content="This link didn't work - Maybe try another?" />
+    <meta name="og:image" content="https://s.astolfo.gay/ur%20short%20lol.png" />
+    <meta name="theme-color" content="#24273a" />
+    
+    <style>
+      /* https://ministyles.astolfo.gay/all.css */
+      /*!
+       * @license "THE BEER-WARE LICENSE" (Revision 42):
+       * <pleasego@nuke.africa> wrote this file. As long as you retain this notice you
+       * can do whatever you want with this stuff. If we meet some day, and you think
+       * this stuff is worth it, you can buy me a beer in return | YieldingExploiter
+       */
+      @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+      /* Combination of all stylesheets */
+      /* Don't blind dark theme users */
+
+      /* https://github.com/catppuccin/catppuccin#-palettes -> Macchiato */
+      html, body {
+        background: #24273a;
+        color: #cad3f5;
+      }
+
+      /* https://github.com/catppuccin/catppuccin#-palettes -> Latte */
+      @media (prefers-color-scheme: light) {
+        html, body {
+          background: #eff1f5;
+          color: #4c4f69;
+        }
+      }
+      /* Makes the code element not look shit */
+      code:not(.default) {
+        padding:4px 4px;
+        border-radius:8px;
+        background:#1e2030;
+      }
+      /* Use Github MD <kbd></kbd> Styles */
+      kbd:not(.default) {
+        display: inline-block;
+        padding: 3px 5px;
+        font: 11px ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace;
+        line-height: normal;
+        line-height: 10px;
+        color: #adbac7;
+        vertical-align: middle;
+        background-color: #2d333b;
+        border: solid 1px rgba(99,110,123,0.4);
+        border-bottom-color: rgba(99,110,123,0.4);
+        border-radius: 6px;
+        box-shadow: inset 0 -1px 0 rgba(99,110,123,0.4);
+      }
+      :root {
+        font-family: 'Inter', sans-serif;
+      }
+      /* Make links not look garbage */
+      a {
+        color: #1e66f5;
+      }
+      a:visited {
+        color: #7287fd;
+      }
+      /* Notifies the user to stop using dark reader */
+      html[data-darkreader-scheme] body {
+        display: none;
+      }
+      html[data-darkreader-scheme]::before {
+        content: 'This site is dark themed! Dark reader breaks this site, so please disable it.';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        padding-top: 0.5em;
+        text-align: center;
+        background: #1e2030;
+      }
+      kbd:not(.default) {
+        padding-bottom: 4px;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>404</h2>
+    <p>This was likely a mistake on either your part, or whoever sent you this' part.<br/>This Shortened URL does not exist.<br/><a href="/">About this URL Shortener</a></p>
+  </body>
+</html>

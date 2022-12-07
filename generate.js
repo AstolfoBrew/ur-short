@@ -1,12 +1,14 @@
 const fs = require('fs-extra'), path = require('path');
 const shorts = JSON.parse(fs.readFileSync(path.join(process.cwd(),'shorts.json'),'utf-8'))
-const template = require('html-minifier').minify(fs.readFileSync(path.join(process.cwd(),'template.html'),'utf-8'),{
-  collapseWhitespace:true,
-  preserveLineBreaks: false,
-  minifyCSS: true,
-  minifyJS: true,
-  removeComments: true
-})
+const min = require('html-minifier').minify,
+  minOpt = {
+    collapseWhitespace:true,
+    preserveLineBreaks: false,
+    minifyCSS: true,
+    minifyJS: true,
+    removeComments: true,
+  }
+const template = min(fs.readFileSync(path.join(process.cwd(),'template.html'),'utf-8'),minOpt)
 for (const idx in shorts) {
   let val = shorts[idx];
   if (typeof val === 'string')
@@ -29,3 +31,4 @@ for (const idx in shorts) {
   fs.ensureDirSync(path.join(process.cwd(),'_pages',idx))
   fs.writeFileSync(path.join(process.cwd(),'_pages',idx,'index.html'),linkTemplate)
 }
+fs.writeFileSync(path.join(process.cwd(),'_pages','404.html'),min(fs.readFileSync(path.join(process.cwd(),'404.html'),minOpt)))
