@@ -31,4 +31,4 @@ for (const idx in shorts) {
   fs.ensureDirSync(path.join(process.cwd(),'_pages',idx))
   fs.writeFileSync(path.join(process.cwd(),'_pages',idx,'index.html'),linkTemplate)
 }
-fs.writeFileSync(path.join(process.cwd(),'_pages','404.html'),min(fs.readFileSync(path.join(process.cwd(),'404.html'),minOpt)))
+fs.writeFileSync(path.join(process.cwd(),'_pages','404.html'),min(fs.readFileSync(path.join(process.cwd(),'404.html'),'utf-8'),minOpt))
