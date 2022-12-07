@@ -19,6 +19,7 @@ for (const idx in shorts) {
   for (const subIdx in val) {
     linkTemplate = linkTemplate.split(subIdx.toUpperCase()).join(val[subIdx])
   }
-  fs.ensureDirSync(path.join(process.cwd(),idx))
-  fs.writeFileSync(path.join(process.cwd(),idx,'index.html'),linkTemplate)
+  // yes u can directory escape idc
+  fs.ensureDirSync(path.join(process.cwd(),'_pages',idx))
+  fs.writeFileSync(path.join(process.cwd(),'_pages',idx,'index.html'),linkTemplate)
 }

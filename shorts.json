@@ -8,5 +8,10 @@
   },
   "b": {
     "target": "https://yieldingexploiter.github.io/bio/"
+  },
+  ".": {
+    "target": "https://github.com/YieldingExploiter/ur-short",
+    "title": "Ur Short",
+    "description": "A URL Shortener using Github Pages."
   }
 }
