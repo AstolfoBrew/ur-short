@@ -43,5 +43,7 @@
     "description": "A Github-Pages-based URL Shortener.",
     "icon": "https://s.astolfo.gay/ur%20short%20lol.png",
     "themecolor": "#24273a"
-  }
+  },
+  "p": {"target":"https://p2.astolfo.gay","title":"Astolfo Fediverse","description":"A Misskey Instance for BreadHub & AstolfoDev","icon":"https://p2.astolfo.gay/files/7b2b5a88-2576-4884-9eb5-96a952996d3a","themecolor":"#d99e82"},
+  "senc": {"target":"https://github.com/MokiyCodes/ur-short-encrypted","title":"Ur Short Enc","description":"A URL Shortener using Github Pages. With Encrypted Indexes. For some fucking reason idk.","icon":"https://s.astolfo.gay/ur%20short%20lol.png","themecolor":"#24273a","twittercard":"summary_large_image"}
 }
