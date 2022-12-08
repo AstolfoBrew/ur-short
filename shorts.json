@@ -36,5 +36,12 @@
     "description": "A URL Shortener using Github Pages.",
     "icon": "https://s.astolfo.gay/ur%20short%20lol.png",
     "twittercard": "summary_large_image"
+  },
+  "redirectToRoot": {
+    "target": "https://p.astolfo.gay/",
+    "title": "ur-short",
+    "description": "A Github-Pages-based URL Shortener.",
+    "icon": "https://s.astolfo.gay/ur%20short%20lol.png",
+    "themecolor": "#24273a"
   }
 }

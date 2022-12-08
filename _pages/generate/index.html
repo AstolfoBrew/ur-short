@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Generate</title>    
+    <meta name="og:title" content="Generate" />
+    <meta property="og:type" content="website" />
+    <meta name="description" content="Quickly generate a shorts.json file" />
+    <meta name="og:description" content="Quickly generate a shorts.json file" />
+    <meta name="og:image" content="https://s.astolfo.gay/ur%20short%20lol.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="theme-color" content="#24273a" />
+    
+    <style>
+      /* https://ministyles.astolfo.gay/all.css */
+      /*!
+       * @license "THE BEER-WARE LICENSE" (Revision 42):
+       * <pleasego@nuke.africa> wrote this file. As long as you retain this notice you
+       * can do whatever you want with this stuff. If we meet some day, and you think
+       * this stuff is worth it, you can buy me a beer in return | YieldingExploiter
+       */
+      @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+      /* Combination of all files */
+      /* background.css */
+      /* Don't blind dark theme users */
+
+      /* https://github.com/catppuccin/catppuccin#-palettes -> Macchiato */
+      html, body {
+      background: #24273a;
+      color: #cad3f5;
+      }
+
+      /* https://github.com/catppuccin/catppuccin#-palettes -> Latte */
+      @media (prefers-color-scheme: light) {
+      html, body {
+      background: #eff1f5;
+      color: #4c4f69;
+      }
+      }
+
+      /* code.css */
+      /* Makes the code element not look shit */
+      code:not(.default) {
+      padding:4px 4px;
+      border-radius:8px;
+      background:#1e2030;
+      }
+
+      /* gh-kbd.css */
+      /* Use Github MD <kbd></kbd> Styles */
+      kbd:not(.default) {
+      display: inline-block;
+      padding: 3px 5px;
+      font: 11px ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace;
+      line-height: normal;
+      line-height: 10px;
+      color: #adbac7;
+      vertical-align: middle;
+      background-color: #2d333b;
+      border: solid 1px rgba(99,110,123,0.4);
+      border-bottom-color: rgba(99,110,123,0.4);
+      border-radius: 6px;
+      box-shadow: inset 0 -1px 0 rgba(99,110,123,0.4);
+      }
+
+      /* input.css */
+      /* Format inputs to fit with the user's theme */
+      /* https://github.com/catppuccin/catppuccin#-palettes -> Macchiato */
+      input:not(.default):not([data-default]) {
+      background: #1e2030;
+      padding: 4px 4px;
+      border: none;
+      color: #cad3f5;
+      }
+      /* https://github.com/catppuccin/catppuccin#-palettes -> Latte */
+      @media (prefers-color-scheme: light) {
+      input:not(.default):not([data-default]) {
+      background: #eff1f5;
+      padding: 4px 4px;
+      border: none;
+      color: #4c4f69;
+      }
+      }
+
+      /* inter-font-by-default.css */
+      :root {
+      font-family: 'Inter', sans-serif;
+      }
+
+      /* links.css */
+      /* Make links not look garbage */
+      a {
+      color: #1e66f5;
+      }
+      a:visited {
+      color: #7287fd;
+      }
+
+      /* no-dark-reader.css */
+      [data-darkreader-mode] body {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        padding-top: 0.5em;
+        text-align: center;
+        background: #1e2030;
+        margin: 0 0;
+      }
+
+      /* padding-kbd.css */
+      kbd:not(.default) {
+      padding-bottom: 4px;
+      }
+    </style>
+    <style>
+      input:not(.default):not([data-default]), textarea {
+        background: #1e2030;
+        padding: 4px 4px;
+        border: none;
+        color: #fff;
+      }
+    </style>
+    <script>
+      /** Random String Generator */
+      const rsg = (length) => {
+        if (!length) throw new Error('no length passed into random string generator')
+        let chr = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        let str = '';
+        for (let i = 0; i < length; i++) {
+            str += chr.charAt(Math.floor(Math.random() * chr.length));
+        }
+        return str;
+      };
+      (async()=>{
+        const data = await (await fetch('/shorts.json')).json()
+        const prohib = await (await fetch('/prohibited.json')).json()
+        // Update Function
+        const update = ()=>{
+          // Get list of inputs
+          const inputs = {};
+          document.querySelectorAll('input[name]').forEach(v=>{
+            if (v.value)
+              inputs[v.getAttribute('name')] = v.value;
+          })
+          // Ensure Short URL is a thing
+          if (!inputs.short) {
+            inputs.short = Math.random().toString().substr(2, 8) + Math.random().toString().substr(2, 8)
+            const inp = document.querySelector('input[name="short"]:not(:active):not(:focus):not(:focus-within):not(:focus-visible)');
+            if (inp) inp.value = inputs.short
+          }
+          // Basic Input Validation, not too thourough as we assume the user has an iq of > 1
+          if (!inputs.target.includes(':')) {
+            document.querySelector('#out').innerHTML = 'invalid target'
+            return;
+          }
+          if (!inputs.target) {
+            return;
+          }
+          if (prohib.includes(inputs.short)) {
+            document.querySelector('#out').innerHTML = 'prohibited short'
+            return;
+          }
+          // Push to Table
+          const {short} = inputs;
+          delete inputs.short;
+          const ourData = {
+            ...data
+          }
+          ourData[short] = inputs;
+          // Output Table
+          document.querySelector('#out').innerHTML = JSON.stringify(ourData,null,2)+'\n'
+          // Return for good measure
+          return inputs
+        }
+        // Globalize Update Function
+        window.update = update;
+        // Call it to fill any autofilled/saved values
+        update()
+      })()
+    </script>
+  </head>
+  <body>
+    <div style="position:fixed;left:0;top:0;padding:0.5em 1em;">
+      <h2>Basic Data</h2>
+      <label for="target">Target URL</label>
+      <input oninput="update()" type="text" name="target" id="target" placeholder="https://p.astolfo.gay" value="https://p.astolfo.gay">
+      <br>
+      <label for="short">Short URL</label>
+      <input oninput="update()" onblur="update()" type="text" name="short" id="short" placeholder="someShortURL">
+      <br>
+      <h2>Embed Data</h2>
+      <label for="title">Title</label>
+      <input oninput="update()" type="text" name="title" id="title" placeholder="Ur Short">
+      <br>
+      <label for="description">Description</label>
+      <input oninput="update()" type="text" name="description" id="description" placeholder="A URL Shortener.">
+      <br>
+      <label for="icon">Icon</label>
+      <input oninput="update()" type="text" name="icon" id="icon" placeholder="https://s.astolfo.gay/ur%20short%20lol.png" value="https://s.astolfo.gay/ur%20short%20lol.png">
+      <br>
+      <label for="icon">Theme Color</label>
+      <input oninput="update()" type="text" name="themecolor" id="themecolor" placeholder="#24273a" value="#24273a">
+      <br>
+      <label for="icon">Twitter Card <span style="opacity: 0.6;">(summary_large_image for a big image on Discord & Twitter)</span></label>
+      <input oninput="update()" type="text" name="twittercard" id="twittercard" placeholder="summary_large_image" value="">
+      <br>
+      <h2>Output</h2>
+      <textarea name="out" id="out" cols="120" rows="30" readonly placeholder="Output JSON"></textarea>
+    </div>
+  </body>
+</html>

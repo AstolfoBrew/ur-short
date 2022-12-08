@@ -10,7 +10,7 @@ const min = require('html-minifier').minify,
   }
 const pages = path.join(process.cwd(),'_pages');
 const template = min(fs.readFileSync(path.join(process.cwd(),'template.html'),'utf-8'),minOpt)
-const prohibited = ['links','404']
+const prohibited = JSON.parse(fs.readFileSync(path.join(pages,'prohibited.json'),'utf-8'))
 const errors = [];
 for (const idx in shorts) {
   let val = shorts[idx];
@@ -48,7 +48,7 @@ for (const idx in shorts) {
 }
 if (errors.length > 0) {
   errors.forEach(console.error)
-  process.exit(1)
+  process.exitCode = 1
 }
 fs.writeFileSync(path.join(pages, '404.html'),min(fs.readFileSync(path.join(process.cwd(),'404.html'),'utf-8'),minOpt))
 
@@ -57,3 +57,5 @@ const links = Object.keys(shorts).sort((a,b)=>a-b).map(v=>({
   ...shorts[v]
 }))
 fs.writeFileSync(path.join(pages, 'links.json'), JSON.stringify(links))
+
+fs.writeFileSync(path.join(pages, 'shorts.json'), JSON.stringify(shorts))

@@ -1,3 +1,5 @@
 node_modules
 _pages/*
 !_pages/*.png
+!_pages/generate
+!_pages/prohibited.json
